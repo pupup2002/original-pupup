@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "303294353614",
+    "project_id": "original-pupup",
+    "storage_bucket": "original-pupup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303294353614:android:7f9f73441e8ff04cf1009f",
+        "android_client_info": {
+          "package_name": "com.example.original_pupup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ0fc4uqBPPRmNPtZMDUvjuks7lZ6UnpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
