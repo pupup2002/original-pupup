@@ -2,6 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:original_pupup/OTP_screen.dart';
 import 'package:original_pupup/pupup_start.dart';
 
 import 'firebase_options.dart';
@@ -13,7 +14,7 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   runApp(
-    const PupStart(),
+    const MaterialApp(home: PupStart(),),
   );
 }
 

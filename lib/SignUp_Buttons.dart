@@ -58,6 +58,7 @@ class SignUpButtons extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: ElevatedButton(
                 onPressed: () {
+
                   phoneNumber('phoneNumberScreen');
                 },
                 style: ElevatedButton.styleFrom(

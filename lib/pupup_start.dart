@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:original_pupup/OTP_screen.dart';
 import 'package:original_pupup/User_Name.dart';
 import 'package:original_pupup/phone_screen.dart';
 import 'package:original_pupup/pupup_startScreen.dart';
@@ -35,14 +36,12 @@ class _PupStartState extends State<PupStart> {
     if (activeScreen == 'phoneNumberScreen') {
       screenWidget = const PhoneNoAuth();
     }
-    // if (activeScreen == 'username') {
-    //   screenWidget = const UserName();
+    // if (activeScreen == 'otpscreen') {
+    //   screenWidget = OtpScreen(verificationID: '123456');
     // }
 
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: screenWidget,
-      ),
     );
   }
 }

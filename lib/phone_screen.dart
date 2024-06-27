@@ -30,40 +30,32 @@ class _PhoneNoAuthState extends State<PhoneNoAuth> {
         child: Padding(
           padding: const EdgeInsets.all(50.0),
           child: Column(
-
             children: [
               const Text('Lets Get Started',style: TextStyle(color: Colors.white),),
 
-              // TextField(
-              //   controller: _phoneNumberController,
-              //   maxLength: 13,
-              //   decoration: const InputDecoration(
-              //     label: Text('enter your mobile number'),
-              //   ),
-              // ),
-
               SizedBox(height: 100,),
 
-              IntlPhoneField(
-                keyboardType: TextInputType.phone,
+              Container(
+                child: IntlPhoneField(
+                  keyboardType: TextInputType.phone,
 
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
+                  decoration: InputDecoration(
+                    labelText: 'Phone Number',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)
 
+                    ),
                   ),
+
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    phoneNumberInput=phone.completeNumber;
+                  },
                 ),
-                initialCountryCode: 'IN',
-                onChanged: (phone) {
-                  phoneNumberInput=phone.completeNumber;
-                },
               ),
 
 
               ElevatedButton(
-
-
 
                 onPressed: () async {
                   await FirebaseAuth.instance.verifyPhoneNumber(

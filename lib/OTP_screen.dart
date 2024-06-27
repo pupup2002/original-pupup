@@ -1,9 +1,11 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:original_pupup/User_Name.dart';
-
+import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {
   OtpScreen({super.key, required this.verificationID});
@@ -28,48 +30,78 @@ class _OTPScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: TextField(
-              controller: _OTPController,
-              keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(
-                hintText: "enter the OTP",
-                suffixIcon: Icon(Icons.phone),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          ElevatedButton(
+    var otpValue = null;
+    final defaultPinTheme = PinTheme(
+      width: 50,
+      height: 50,
+      textStyle: const TextStyle(
+        fontSize: 22,
+        color: Colors.black,
+      ),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(108, 255, 255, 255),
+        border: Border.all(color: Colors.transparent),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(8),
+        ),
+      ),
+    );
 
-            onPressed: () async {
-              try {
-                PhoneAuthCredential credential =
-                    await PhoneAuthProvider.credential(
-                        verificationId: widget.verificationID,
-                        smsCode: _OTPController.text.toString());
-                FirebaseAuth.instance
-                    .signInWithCredential(credential)
-                    .then((value) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const UserName(),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 83, 185, 216),
+        ),
+
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 300),
+      
+            child: Column(
+
+              children: [
+                Pinput(
+                  keyboardType: TextInputType.phone,
+                  length: 6,
+                  defaultPinTheme: defaultPinTheme,
+                  focusedPinTheme: defaultPinTheme.copyWith(
+                    decoration: defaultPinTheme.decoration!.copyWith(
+                      border: Border.all(color: Colors.white),
                     ),
-                  );
-                });
-              } catch (ex) {
-                log(ex.toString() as num);
-              }
-            },
-            child: const Text('OTP'),
-          ),
-        ],
+                  ),
+                  onChanged: (value) {
+                    otpValue=value;
+                  },
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      PhoneAuthCredential credential =
+                          await PhoneAuthProvider.credential(
+                              verificationId: widget.verificationID,
+                              smsCode: otpValue.toString());
+                      FirebaseAuth.instance
+                          .signInWithCredential(credential)
+                          .then((value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserName(),
+                          ),
+                        );
+                      });
+                    } catch (ex) {
+                      log(ex.toString() as num);
+                    }
+                  },
+                  child: const Text('OTP'),
+                ),
+              ],
+            ),
+      
+      
       ),
     );
   }
