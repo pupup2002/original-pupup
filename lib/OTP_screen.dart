@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:original_pupup/User_Name.dart';
 
 
 class OtpScreen extends StatefulWidget {
@@ -44,27 +46,27 @@ class _OTPScreenState extends State<OtpScreen> {
             height: 30,
           ),
           ElevatedButton(
-            onPressed: (){},
-            // onPressed: () async {
-            //   try {
-            //     PhoneAuthCredential credential =
-            //         await PhoneAuthProvider.credential(
-            //             verificationId: widget.verificationID,
-            //             smsCode: _OTPController.text.toString());
-            //     FirebaseAuth.instance
-            //         .signInWithCredential(credential)
-            //         .then((value) {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => PupStart(),
-            //         ),
-            //       );
-            //     });
-            //   } catch (ex) {
-            //     log(ex.toString() as num);
-            //   }
-            // },
+
+            onPressed: () async {
+              try {
+                PhoneAuthCredential credential =
+                    await PhoneAuthProvider.credential(
+                        verificationId: widget.verificationID,
+                        smsCode: _OTPController.text.toString());
+                FirebaseAuth.instance
+                    .signInWithCredential(credential)
+                    .then((value) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserName(),
+                    ),
+                  );
+                });
+              } catch (ex) {
+                log(ex.toString() as num);
+              }
+            },
             child: const Text('OTP'),
           ),
         ],

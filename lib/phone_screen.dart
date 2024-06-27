@@ -1,6 +1,10 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+
+import 'OTP_screen.dart';
 
 
 class PhoneNoAuth extends StatefulWidget {
@@ -40,45 +44,45 @@ class _PhoneNoAuthState extends State<PhoneNoAuth> {
 
               SizedBox(height: 100,),
 
-              // IntlPhoneField(
-              //   keyboardType: TextInputType.phone,
-              //
-              //   decoration: InputDecoration(
-              //     labelText: 'Phone Number',
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(20)
-              //
-              //     ),
-              //   ),
-              //   initialCountryCode: 'IN',
-              //   onChanged: (phone) {
-              //     phoneNumberInput=phone.completeNumber;
-              //   },
-              // ),
+              IntlPhoneField(
+                keyboardType: TextInputType.phone,
+
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20)
+
+                  ),
+                ),
+                initialCountryCode: 'IN',
+                onChanged: (phone) {
+                  phoneNumberInput=phone.completeNumber;
+                },
+              ),
 
 
               ElevatedButton(
 
-                onPressed: (){},
 
-                // onPressed: () async {
-                //   await FirebaseAuth.instance.verifyPhoneNumber(
-                //     verificationCompleted: (PhoneAuthCredential credential) {},
-                //     verificationFailed: (FirebaseAuthException ex) {},
-                //     codeSent: (String verificationid, int? resendToken) {
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //           builder: (context) => OtpScreen(
-                //             verificationID: verificationid,
-                //           ),
-                //         ),
-                //       );
-                //     },
-                //     codeAutoRetrievalTimeout: (String verificationId) {},
-                //     phoneNumber: phoneNumberInput.toString(),
-                //   );
-                // },
+
+                onPressed: () async {
+                  await FirebaseAuth.instance.verifyPhoneNumber(
+                    verificationCompleted: (PhoneAuthCredential credential) {},
+                    verificationFailed: (FirebaseAuthException ex) {},
+                    codeSent: (String verificationid, int? resendToken) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OtpScreen(
+                            verificationID: verificationid,
+                          ),
+                        ),
+                      );
+                    },
+                    codeAutoRetrievalTimeout: (String verificationId) {},
+                    phoneNumber: phoneNumberInput.toString(),
+                  );
+                },
                 child: const Icon(Icons.keyboard_arrow_right),
               ),
             ],

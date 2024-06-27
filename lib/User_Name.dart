@@ -6,16 +6,22 @@ class UserName extends StatelessWidget{
 
   @override
   Widget build( context) {
-    return Container(
-      child: const Column(
-        children: [
-          Text('ENTER YOUR AND YOUR DOG NAME'),
-          TextField(
-
-
-          ),
-        ],
+    return Scaffold(
+      body: Container(
+        child:Column(
+          children: [
+            const Text('ENTER YOUR AND YOUR DOG NAME'),
+            const SizedBox(height: 40,),
+            TextFormField(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Enter your username',
+              ),
+            ),
+          ],
+        ),
       ),
+
     );
   }
 

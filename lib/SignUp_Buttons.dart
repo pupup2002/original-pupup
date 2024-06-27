@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:original_pupup/User_Name.dart';
 
 import 'authServices/auth.dart';
 import 'home.dart';
@@ -43,9 +44,12 @@ class SignUpButtons extends StatelessWidget {
                 ),
               ],
             ),
+            // ElevatedButton(onPressed: (){
+            //   phoneNumber('username');
+            // }, child: Text('dabao jorse'),),
 
             const SizedBox(
-              height: 200,
+              height: 180,
             ),
 
             // CREATE ACCOUNT PHONE NUMBER BUTTON

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:original_pupup/User_Name.dart';
 import 'package:original_pupup/phone_screen.dart';
 import 'package:original_pupup/pupup_startScreen.dart';
 import 'package:original_pupup/signup_page.dart';
@@ -34,6 +35,9 @@ class _PupStartState extends State<PupStart> {
     if (activeScreen == 'phoneNumberScreen') {
       screenWidget = const PhoneNoAuth();
     }
+    // if (activeScreen == 'username') {
+    //   screenWidget = const UserName();
+    // }
 
     return MaterialApp(
       home: Scaffold(
