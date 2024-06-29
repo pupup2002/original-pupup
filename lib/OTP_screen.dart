@@ -61,6 +61,7 @@ class _OTPScreenState extends State<OtpScreen> {
               children: [
                 Pinput(
                   keyboardType: TextInputType.phone,
+                  autofocus: true,
                   length: 6,
                   defaultPinTheme: defaultPinTheme,
                   focusedPinTheme: defaultPinTheme.copyWith(
@@ -100,8 +101,7 @@ class _OTPScreenState extends State<OtpScreen> {
                 ),
               ],
             ),
-      
-      
+
       ),
     );
   }
