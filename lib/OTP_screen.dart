@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:original_pupup/User_Name.dart';
 import 'package:pinput/pinput.dart';
 
@@ -52,56 +53,96 @@ class _OTPScreenState extends State<OtpScreen> {
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 83, 185, 216),
         ),
-
-            width: double.infinity,
-            padding: EdgeInsets.only(top: 300),
-      
-            child: Column(
-
-              children: [
-                Pinput(
-                  keyboardType: TextInputType.phone,
-                  autofocus: true,
-                  length: 6,
-                  defaultPinTheme: defaultPinTheme,
-                  focusedPinTheme: defaultPinTheme.copyWith(
-                    decoration: defaultPinTheme.decoration!.copyWith(
-                      border: Border.all(color: Colors.white),
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 28, top: 120),
+                  child: Text(
+                    'Enter Your OTP',
+                    style: GoogleFonts.poppins(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
-                  onChanged: (value) {
-                    otpValue=value;
-                  },
                 ),
-                const SizedBox(
-                  height: 30,
+              ),
+              const SizedBox(height: 100),
+              Pinput(
+                keyboardType: TextInputType.phone,
+                autofocus: true,
+                length: 6,
+                defaultPinTheme: defaultPinTheme,
+                focusedPinTheme: defaultPinTheme.copyWith(
+                  decoration: defaultPinTheme.decoration!.copyWith(
+                    border: Border.all(color: Colors.white),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      PhoneAuthCredential credential =
-                          await PhoneAuthProvider.credential(
-                              verificationId: widget.verificationID,
-                              smsCode: otpValue.toString());
-                      FirebaseAuth.instance
-                          .signInWithCredential(credential)
-                          .then((value) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const UserName(),
-                          ),
-                        );
-                      });
-                    } catch (ex) {
-                      log(ex.toString() as num);
-                    }
-                  },
-                  child: const Text('OTP'),
+                onChanged: (value) {
+                  otpValue = value;
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(174, 0, 87, 115),
+                  elevation: 0.1,
+                  shape: const CircleBorder(
+                    side: BorderSide(
+                      color: Colors.transparent, // Border color
+                      width: 0.5, // B
+                      // order width
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(20),
                 ),
-              ],
-            ),
+                child: const Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                  size: 30, // Icon color
+                ),
+                onPressed: () async {
+                  try {
+                    PhoneAuthCredential credential =
+                        await PhoneAuthProvider.credential(
+                            verificationId: widget.verificationID,
+                            smsCode: otpValue.toString());
+                    FirebaseAuth.instance
+                        .signInWithCredential(credential)
+                        .then((value) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserName(),
+                        ),
+                      );
+                    });
+                  } catch (ex) {
+                    log(ex.toString() as num);
+                  }
+                },
+              ),
+              const SizedBox(height: 70,),
+              Container(
+                alignment: Alignment.bottomLeft,
 
+                child: Image.asset(
+                    'assets/hand-drawn-dog-outline-illustration_23-2149263522-removebg-preview.png',
+                    width: 300,
+                    color: const Color.fromARGB(223, 255, 255, 255)
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
