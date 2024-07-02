@@ -64,7 +64,7 @@ class _OTPScreenState extends State<OtpScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 28, top: 120),
                   child: Text(
-                    'Enter Your OTP',
+                    'ENTER YOUR OTP',
                     style: GoogleFonts.poppins(
                       fontSize: 30,
                       color: Colors.white,
